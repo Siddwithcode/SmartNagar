@@ -13,9 +13,8 @@ export async function createIssue({ description, image }) {
   formData.append('description', description);
   formData.append('image', image);
 
-  const { data } = await api.post('/issues/report', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
+  // Let axios set Content-Type with boundary — manual header breaks uploads on production
+  const { data } = await api.post('/issues/report', formData);
 
   return data;
 }
