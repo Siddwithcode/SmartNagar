@@ -32,6 +32,14 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Smartnagar API is running' });
 });
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'Smartnagar API is running',
+    health: '/api/health',
+    note: 'Open your frontend URL in the browser to use the app.',
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
