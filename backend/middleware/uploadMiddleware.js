@@ -31,7 +31,8 @@ const saveLocally = (file) => {
   fs.writeFileSync(path.join(UPLOADS_DIR, filename), file.buffer);
 
   const port = process.env.PORT || 5000;
-  return `http://localhost:${port}/uploads/${filename}`;
+  const backendUrl = process.env.BACKEND_URL || `http://localhost:${port}`;
+  return `${backendUrl.replace(/\/$/, '')}/uploads/${filename}`;
 };
 
 const uploadImage = (req, res, next) => {

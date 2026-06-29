@@ -9,6 +9,10 @@ node_modules/
 dist/
 build/
 
+# User uploads (keep folder via .gitkeep)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
 # Logs
 npm-debug.log*
 yarn-debug.log*

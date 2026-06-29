@@ -8,7 +8,8 @@ const generateToken = (id) => {
 const cookieOptions = (rememberMe = false) => ({
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',
-  sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+  // 'none' required when frontend and backend are on different Render URLs
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 7 * 24 * 60 * 60 * 1000,
 });
 
@@ -20,7 +21,7 @@ const clearTokenCookie = (res) => {
   res.clearCookie('token', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   });
 };
 
